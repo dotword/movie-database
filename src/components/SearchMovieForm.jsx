@@ -1,38 +1,62 @@
+import { useState } from "react";
 
-const SearchMovieForm = () => {
+const SearchMovieForm = ({ setSearchResult }) => {
 
-    const handleSubmit = async (e) => {
-       try {
-        e.preventDefault();
-        const query = e.target.elements.title.value;
+  const { VITE_API_KEY } = import.meta.env;
+  const [radio, setRadio] = useState('movie');
 
-        const searchParams = new URLSearchParams();           
-        searchParams.append('query', query);
-        searchParams.append('locale', 'en-GB');
-        searchParams.append('include_adult', true);
+  const handleChange = (e) => {
+    setRadio(e.target.value);
+  };
 
-        const response = await fetch(`https://api.themoviedb.org/3/search/multi?${searchParams.toString()}`, {
-            headers: {
-                Authorization: import.meta.env.VITE_API_KEY
-            }
-        })
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const query = e.target.elements.title.value;
 
-        const body = await response.json();
-        console.log(body);
+      const response = await fetch(
+        `http://www.omdbapi.com/?s=${query}&type=${radio}&apikey=${VITE_API_KEY}`,
+      );
 
+      if (!response.ok)
+        throw new Error("Network response error", response.StatusText);
 
-       } catch (error) {
-        console.error(error.message);
-       }
-        
+      const data = await response.json();
+
+      setSearchResult(data.Search);
+
+    } catch (error) {
+      console.error(error.message);
     }
+  };
 
-    return (
-       <form onSubmit={handleSubmit}>
-        <input type="text" name="title" placeholder="Search by title" />
-        <button>Search</button>
-       </form>
-    )
-}
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="radio-form">
+        <input
+          type="radio"
+          id="movie"
+          name="contentType"
+          value="movie"
+          checked={radio === "movie"}
+          onChange={handleChange}
+        />
+        <label htmlFor="movie">Movie</label>
+        <input
+          type="radio"
+          id="series"
+          name="contentType"
+          value="series"
+          checked={radio === "series"}
+          onChange={handleChange}
+        />
+        <label htmlFor="series">Series</label>
+      </div>
+      <input type="text" name="title" placeholder="Search by title" />
+      <button>Search</button>
+    </form>
+    
+  );
+};
 
 export default SearchMovieForm;

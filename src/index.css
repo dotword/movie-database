@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+
+:root {
+  --darkBlue:#2b333e;
+  --white: #fff;
+  --grey: #b7b7b7;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+  background-color: var(--darkBlue);
+}
+img {
+  max-width: 100%;
+}
+main {
+  flex-grow: 1;
+  max-width: 1400px;
+  margin: auto;
+  width: 100%;
+  padding: 1rem 2rem;
+  color: var(--white);
+}
+#root  > header,
+#root  > footer {
+  padding: 1rem;
+  display: grid;
+  place-content: center;
+  width: 100%;
+  margin: auto;
+  background: var(--grey);
+  color: var(--darkBlue);
+}
+h1 {
+  font-weight: 900;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+header > nav {
+  display: flex;
+  justify-content: space-around;
+  gap: 3rem;
+}
+header > nav a {
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  padding: .5rem;
+  background-color: var(--darkBlue);
+  transition: all .5s ease-out;
+}
+header > nav a:hover {
+  background-color: var(--white);
+  color: var(--darkBlue);
+}
+main h2 {
+  margin-bottom: 1rem;
+}
+/* Popup */
+.modal {
+    font-size: 12px;
+  }
+  .modal > .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px;
+  }
+  .modal > .content {
+    width: 100%;
+    padding: 10px 5px;
+  }
+  .modal > .actions {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
+  }
+  .modal > .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+  }

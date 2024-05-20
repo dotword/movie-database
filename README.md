@@ -1,1 +1,1 @@
-TMDb Movie Search is a responsive React app that utilises loading data via The Movie Database (TMDb) API.
+OMDB Movie Search is a responsive React app that utilises loading data via The Movie Database (OMDB) API.
