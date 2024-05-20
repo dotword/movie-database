@@ -1,10 +1,45 @@
+#search-movies h2 {
+  margin: 2rem 0;
+}
+#search-movies > form .radio-form {
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1rem auto 1rem auto;
+  gap: 0.5rem;
+  max-width: 15rem;
+}
+#search-movies > form > input {
+  padding: 0.4rem;
+  margin-right: 1rem;
+  width: 25rem;
+  max-width: calc(100% - 110px);
+}
+#search-movies > p {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
 .movie-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-    gap: 2rem;
-    margin: 3rem auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 2rem;
+  margin: 3rem auto;
 }
 .movie-list article {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.movie-list article a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  text-decoration: none;
+  text-align: center;
+  color: var(--white);
+  margin-top: 0.7rem;
+  transition: all 0.4s ease-in-out;
+}
+.movie-list article > a:hover {
+  transform: scale(1.1);
 }

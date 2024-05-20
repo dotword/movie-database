@@ -1,9 +1,9 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
 const SearchResults = ({ movies }) => {
+  if (movies.length === 0) return <p>No results...</p>;
 
-  if (movies.length === 0) return <h3>No results...</h3>;
   return (
     <div className="movie-list">
       {movies &&
@@ -11,18 +11,20 @@ const SearchResults = ({ movies }) => {
           return (
             <article key={movie.imdbID}>
               <NavLink to={`/${movie.imdbID}`}>
-
-              <img src={movie.Poster} alt={movie.Title} />
-              <h3>
-                {movie.Title} ({movie.Year})
-              </h3>
+                <img src={movie.Poster} alt={movie.Title} />
+                <h3>
+                  {movie.Title} ({movie.Year})
+                </h3>
               </NavLink>
-              
             </article>
           );
         })}
     </div>
   );
+};
+
+SearchResults.propTypes = {
+  movies: PropTypes.array,
 };
 
 export default SearchResults;

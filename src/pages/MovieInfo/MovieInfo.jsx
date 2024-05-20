@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 const { VITE_API_KEY } = import.meta.env;
+import "./MovieInfo.css";
 
 const MovieInfo = () => {
   const [movieDetails, setMovieDetails] = useState("");
@@ -17,7 +18,7 @@ const MovieInfo = () => {
           throw new Error("Network response error", response.StatusText);
 
         const json = await response.json();
-        console.log(json);
+
         setMovieDetails(json);
       } catch (error) {
         console.error(error.message);
@@ -26,36 +27,71 @@ const MovieInfo = () => {
     fetData();
   }, [id]);
 
-  const {Title, Year, Rated, Runtime, imdbRating, Poster, Plot, Genre, Director, Writer, Actors, Country, Language} = movieDetails;
+  const {
+    Title,
+    Year,
+    Rated,
+    Runtime,
+    imdbRating,
+    Poster,
+    Plot,
+    Genre,
+    Director,
+    Writer,
+    Actors,
+    Country,
+    Language,
+  } = movieDetails;
+  //   const genres = Genre.split(',');
 
+  // console.log(genres);
   return (
-    <section>
+    <section className="movie-info">
       <div className="movie-header">
-        <did className="movie-header__title">
+        <div className="movie-header__title">
           <h2>{Title}</h2>
           <ul>
             <li>{Year}</li>
             <li>{Rated}</li>
             <li>{Runtime}</li>
           </ul>
-        </did>
+        </div>
         <div className="movie-header__icons">
-          <p>ImDB Score <span>{imdbRating}</span></p>
-          <p>My Favorite <span>Heart</span></p>
+          <p>
+            ImDB Score <span>{imdbRating}</span>
+          </p>
+          <p className="favorite">
+            My Favorite <span>❤️</span>
+          </p>
         </div>
       </div>
 
       <div className="movie-details">
         <img src={Poster} alt={Title} />
         <div className="movie-details__list">
+          <div className="list-infoDetails">
+            {Genre &&
+              Genre.split(/\s*,\s*/).map((gen, index) => {
+                return <p key={index}>{gen}</p>;
+              })}
+          </div>
+          <p>{Plot}</p>
           <ul>
-            <li>{Plot}</li>
-            <li>Genres: <span>{Genre}</span></li>
-            <li>Director: <span>{Director}</span></li>
-            <li>Writer: <span>{Writer}</span></li>
-            <li>Actors: <span>{Actors}</span></li>
-            <li>Contry: <span>{Country}</span></li>
-            <li>Language: <span>{Language}</span></li>
+            <li>
+              Director: <span>{Director}</span>
+            </li>
+            <li>
+              Writer: <span>{Writer}</span>
+            </li>
+            <li>
+              Actors: <span>{Actors}</span>
+            </li>
+            <li>
+              Contry: <span>{Country}</span>
+            </li>
+            <li>
+              Language: <span>{Language}</span>
+            </li>
           </ul>
         </div>
       </div>

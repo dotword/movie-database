@@ -16,9 +16,24 @@
   flex-direction: column;
   font-family: "Lato", sans-serif;
   background-color: var(--darkBlue);
+  color: var(--darkBlue);
 }
 img {
   max-width: 100%;
+}
+button {
+  padding: .4rem 1rem;
+  border-radius: 0;
+  font-weight: 700;
+  background-color: var(--grey);
+  border: 2px solid var(--grey);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .5s ease-out;
+}
+button:hover{
+  border-color: var(--white);
+  background-color: var(--white);
 }
 main {
   flex-grow: 1;
@@ -62,9 +77,6 @@ header > nav a {
 header > nav a:hover {
   background-color: var(--white);
   color: var(--darkBlue);
-}
-main h2 {
-  margin-bottom: 1rem;
 }
 /* Popup */
 .modal {

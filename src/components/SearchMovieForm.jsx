@@ -1,9 +1,11 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 
-const SearchMovieForm = ({ setSearchResult }) => {
+const SearchMovieForm = ({ setSearchResult, pageNumber }) => {
 
   const { VITE_API_KEY } = import.meta.env;
   const [radio, setRadio] = useState('movie');
+
 
   const handleChange = (e) => {
     setRadio(e.target.value);
@@ -15,7 +17,7 @@ const SearchMovieForm = ({ setSearchResult }) => {
       const query = e.target.elements.title.value;
 
       const response = await fetch(
-        `http://www.omdbapi.com/?s=${query}&type=${radio}&apikey=${VITE_API_KEY}`,
+        `http://www.omdbapi.com/?s=${query}&type=${radio}&page=${pageNumber}&apikey=${VITE_API_KEY}`,
       );
 
       if (!response.ok)
@@ -58,5 +60,10 @@ const SearchMovieForm = ({ setSearchResult }) => {
     
   );
 };
+
+SearchMovieForm.propTypes = {
+  setSearchResult: PropTypes.func,
+};
+
 
 export default SearchMovieForm;
