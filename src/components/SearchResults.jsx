@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
+import defaultImage from '../assets/cinema.jpg';
 
 const SearchResults = ({ movies }) => {
-  if (movies.length === 0) return <p>No results...</p>;
+  if (!movies) return <p>No results...</p>;
 
   return (
     <div className="movie-list">
@@ -11,7 +12,8 @@ const SearchResults = ({ movies }) => {
           return (
             <article key={movie.imdbID}>
               <NavLink to={`/${movie.imdbID}`}>
-                <img src={movie.Poster} alt={movie.Title} />
+                {movie.Poster === 'N/A' ? (<img src={defaultImage} alt={movie.Title} />) : (<img src={movie.Poster} alt={movie.Title} />)}
+                
                 <h3>
                   {movie.Title} ({movie.Year})
                 </h3>

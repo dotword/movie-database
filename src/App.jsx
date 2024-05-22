@@ -1,13 +1,11 @@
 import { Routes, Route, NavLink } from "react-router-dom";
 import SearchMovies from "./pages/SearchMovies/SearchMovies";
 import MyMovies from "./pages/MyMovies/MyMovies";
-// import PopUp from "./components/PopUp";
 import MovieInfo from "./pages/MovieInfo/MovieInfo";
 
 function App() {
   return (
     <>
-      {/* <PopUp /> */}
       <header>
         <h1>Movie database</h1>
         <nav>

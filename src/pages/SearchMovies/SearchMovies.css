@@ -27,7 +27,6 @@
 .movie-list article {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
 }
 .movie-list article a {
   display: flex;
@@ -37,9 +36,30 @@
   text-decoration: none;
   text-align: center;
   color: var(--white);
-  margin-top: 0.7rem;
   transition: all 0.4s ease-in-out;
+  box-shadow: 1px 1px 6px 6px rgba(0, 0, 0, 0.2);
 }
 .movie-list article > a:hover {
   transform: scale(1.1);
+}
+.movie-list a h3 {
+  margin: .5rem auto 1.2rem;
+}
+/* Paginator */
+.pagination {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 22rem;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 7rem;
+  padding-top: 2rem;
+}
+.pagination > p {
+  padding: .5rem;
+    background-color: var(--darkBlue);
+    cursor: pointer;
+    transition: all .5s ease-out;
+    margin: 0;
+    color: var(--grey);
 }
