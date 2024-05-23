@@ -2,7 +2,7 @@ const getMovieInfoService = async ({id}) => {
   
   const { VITE_API_KEY } = import.meta.env;
 
-  const url = `http://www.omdbapi.com/?i=${id}&plot=full&apikey=${VITE_API_KEY}`;
+  const url = `https://www.omdbapi.com/?i=${id}&plot=full&apikey=${VITE_API_KEY}`;
 
   const response = await fetch(url);
 
