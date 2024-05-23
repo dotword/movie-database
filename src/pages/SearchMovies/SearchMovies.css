@@ -25,6 +25,8 @@
   display: flex;
   justify-content: center;
   position: relative;
+  max-width: 30rem;
+  margin: auto;
 }
 .movie-list article a {
   display: flex;

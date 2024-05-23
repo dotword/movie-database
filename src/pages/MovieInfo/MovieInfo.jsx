@@ -3,23 +3,21 @@ import { useNavigate, useParams } from "react-router-dom";
 import getMovieInfoService from "../../services/getMovieInfoService";
 import Loading from "../../utils/Loading";
 import "./MovieInfo.css";
-import defaultImage from '../../assets/cinema.jpg';
+import defaultImage from "../../assets/cinema.jpg";
 
-const MovieInfo = ({addToFavorites}) => {
-
+const MovieInfo = ({ addToFavorites }) => {
   const [movieDetails, setMovieDetails] = useState("");
-  
+  const [className, setClassName] = useState("favorite");
+
   let navigate = useNavigate();
 
   const { id } = useParams();
 
-  
   useEffect(() => {
     const fetData = async () => {
       try {
-        const movieFetchInfo = await getMovieInfoService({id});
+        const movieFetchInfo = await getMovieInfoService({ id });
         setMovieDetails(movieFetchInfo);
-        
       } catch (error) {
         console.error(error.message);
       }
@@ -59,16 +57,26 @@ const MovieInfo = ({addToFavorites}) => {
             <p>
               ImDB Score <span>{imdbRating}</span>
             </p>
-            <p className="favorite">
-              My Favorite <span onClick={() => {
-                addToFavorites(movieDetails)
-              }}>❤️</span>
+            <p className={className}>
+              My Favorite{" "}
+              <span
+                onClick={() => {
+                  setClassName("favorite bar")
+                  addToFavorites(movieDetails);
+                }}
+              >
+                ❤️
+              </span>
             </p>
           </div>
         </div>
 
         <div className="movie-details">
-        {Poster === 'N/A' ? (<img src={defaultImage} alt={Title} />) : (<img src={Poster} alt={Title} />)}
+          {Poster === "N/A" ? (
+            <img src={defaultImage} alt={Title} />
+          ) : (
+            <img src={Poster} alt={Title} />
+          )}
           <div className="movie-details__list">
             <div className="list-infoDetails">
               {Genre &&
@@ -97,13 +105,13 @@ const MovieInfo = ({addToFavorites}) => {
           </div>
         </div>
       </section>
-      <button className="back-home" onClick={() => navigate('/') }>
+      <button className="back-home" onClick={() => navigate("/")}>
         Back to search
       </button>
-      </>
-    ) : (
-      <Loading />
-    )
+    </>
+  ) : (
+    <Loading />
+  );
 };
 
 export default MovieInfo;

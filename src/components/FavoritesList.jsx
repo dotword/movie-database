@@ -9,9 +9,9 @@ const FavoritesList = ({ favorites, setFavorites }) => {
     );
     setFavorites(favoritesFiltered);
   };
-console.log(favorites.length);
-  if (favorites.length ===0) return <p>No favorites yet.</p>;
-console.log(favorites);
+
+  if (favorites.length === 0) return <p>No favorites yet.</p>;
+
   return (
     <div className="favorite-list movie-list">
       {favorites &&
@@ -27,7 +27,7 @@ console.log(favorites);
               >
                 ❤️
               </p>
-              <NavLink to={`/${favorites.imdbID}`}>
+              <NavLink to={`/${favorite.imdbID}`}>
                 {favorite.Poster === "N/A" ? (
                   <img src={defaultImage} alt={favorite.Title} />
                 ) : (
