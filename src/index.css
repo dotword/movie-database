@@ -59,6 +59,9 @@ h1 {
   margin-bottom: 1rem;
   text-align: center;
 }
+h2 {
+  margin: 2rem 0;
+}
 header > nav {
   display: flex;
   justify-content: space-around;
@@ -77,4 +80,8 @@ header > nav a {
 header > nav a:hover {
   background-color: var(--white);
   color: var(--darkBlue);
+}
+.loading {
+  display: flex;
+  margin: 0 auto;
 }

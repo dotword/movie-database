@@ -34,6 +34,7 @@ const SearchMovieForm = ({ setSearchResult, searchResult }) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <div className="search-form">
         <div className="radio-form">
           <input
             type="radio"
@@ -59,8 +60,10 @@ const SearchMovieForm = ({ setSearchResult, searchResult }) => {
           e.stopPropagation();
           setPageNumber(1)
         }}>Search</button>
+        </div>
 
-        <SearchResults movies={searchResult} />
+
+        <SearchResults movies={searchResult}/>
 
         {!setResultsNumber ? (
           ""

@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import getMoviesByTitleService from "../../services/getMoviesByTitleService";
+import getMovieInfoService from "../../services/getMovieInfoService";
+import Loading from "../../utils/Loading";
 import "./MovieInfo.css";
 import defaultImage from '../../assets/cinema.jpg';
 
-const MovieInfo = () => {
-  const [movieDetails, setMovieDetails] = useState("");
+const MovieInfo = ({addToFavorites}) => {
 
+  const [movieDetails, setMovieDetails] = useState("");
+  
   let navigate = useNavigate();
 
   const { id } = useParams();
+
+  
   useEffect(() => {
     const fetData = async () => {
       try {
-        const movieFetchInfo = await getMoviesByTitleService({id});
+        const movieFetchInfo = await getMovieInfoService({id});
         setMovieDetails(movieFetchInfo);
-
+        
       } catch (error) {
         console.error(error.message);
       }
@@ -39,7 +43,7 @@ const MovieInfo = () => {
     Language,
   } = movieDetails;
 
-  return (
+  return movieDetails ? (
     <>
       <section className="movie-info">
         <div className="movie-header">
@@ -56,7 +60,9 @@ const MovieInfo = () => {
               ImDB Score <span>{imdbRating}</span>
             </p>
             <p className="favorite">
-              My Favorite <span>❤️</span>
+              My Favorite <span onClick={() => {
+                addToFavorites(movieDetails)
+              }}>❤️</span>
             </p>
           </div>
         </div>
@@ -94,8 +100,10 @@ const MovieInfo = () => {
       <button className="back-home" onClick={() => navigate('/') }>
         Back to search
       </button>
-    </>
-  );
+      </>
+    ) : (
+      <Loading />
+    )
 };
 
 export default MovieInfo;

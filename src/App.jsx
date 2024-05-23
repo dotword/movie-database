@@ -2,8 +2,21 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import SearchMovies from "./pages/SearchMovies/SearchMovies";
 import MyMovies from "./pages/MyMovies/MyMovies";
 import MovieInfo from "./pages/MovieInfo/MovieInfo";
+import { useEffect, useState } from "react";
 
 function App() {
+
+  const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
+  const [favorites, setFavorites] = useState( storedFavorites || [] );
+
+  const addToFavorites = (movieDetails) => {
+    setFavorites([...favorites, movieDetails]);
+  }  
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
   return (
     <>
       <header>
@@ -16,8 +29,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<SearchMovies />} />
-          <Route path=":id" element={<MovieInfo />} />
-          <Route path="/my-movies" element={<MyMovies />} />
+          <Route path=":id" element={<MovieInfo addToFavorites={addToFavorites} />} />
+          <Route path="/my-movies" element={<MyMovies favorites={favorites} setFavorites={setFavorites} />} />
         </Routes>
       </main>
       <footer>

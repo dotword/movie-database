@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import getMoviesByTitleService from "../services/getMoviesByTitleService";
+// import getMoviesByTitleService from "../services/getMovieInfoService";
 
 const Search = ({ setSearchResult, searchResult }) => {
 
@@ -9,13 +9,13 @@ const Search = ({ setSearchResult, searchResult }) => {
   const currentTitle = searchParams.get("title");
 
 
-  const handleClick = (radio) => {
-    if (radio) {
-        setSearchParams({ type: radio });
-      } else {
-        setSearchParams({});
-      }
-  };
+  // const handleClick = (radio) => {
+  //   if (radio) {
+  //       setSearchParams({ type: radio });
+  //     } else {
+  //       setSearchParams({});
+  //     }
+  // };
 
   const handleChange = (title) => {
     if (title) {
@@ -34,6 +34,7 @@ const Search = ({ setSearchResult, searchResult }) => {
       console.error(error.message);
     }
   };
+  console.log(searchResult);
 
   return (
     <div>

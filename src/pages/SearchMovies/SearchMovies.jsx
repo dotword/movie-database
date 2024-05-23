@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SearchMovieForm from "../../components/SearchMovieForm";
 import "./SearchMovies.css";
+import Search from "../../components/Search";
 
 const SearchMovies = () => {
   const [searchResult, setSearchResult] = useState([]);
@@ -12,6 +13,7 @@ const SearchMovies = () => {
         setSearchResult={setSearchResult}
         searchResult={searchResult}
       />
+      {/* <Search setSearchResult={setSearchResult} searchResult={searchResult} /> */}
     </section>
   );
 };
