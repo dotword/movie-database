@@ -7,11 +7,11 @@ import Pagination from "../utils/Pagination";
 const SearchMovieForm = ({ setSearchResult, searchResult }) => {
   const [radio, setRadio] = useState("movie");
   const [pageNumber, setPageNumber] = useState(1);
-  const [resultsNumber, setResultsNumber] = useState('')
+  const [resultsNumber, setResultsNumber] = useState("");
 
   const handleChange = (e) => {
     setRadio(e.target.value);
-    setPageNumber(1)
+    setPageNumber(1);
   };
 
   const handleSubmit = async (e) => {
@@ -23,7 +23,7 @@ const SearchMovieForm = ({ setSearchResult, searchResult }) => {
         radio,
         pageNumber,
       });
-                    
+      
       setSearchResult(moviesResults.Search);
       setResultsNumber(moviesResults.totalResults);
     } catch (error) {
@@ -35,35 +35,38 @@ const SearchMovieForm = ({ setSearchResult, searchResult }) => {
     <>
       <form onSubmit={handleSubmit}>
         <div className="search-form">
-        <div className="radio-form">
-          <input
-            type="radio"
-            id="movie"
-            name="contentType"
-            value="movie"
-            checked={radio === "movie"}
-            onChange={handleChange}
-          />
-          <label htmlFor="movie">Movie</label>
-          <input
-            type="radio"
-            id="series"
-            name="contentType"
-            value="series"
-            checked={radio === "series"}
-            onChange={handleChange}
-          />
-          <label htmlFor="series">Series</label>
-        </div>
-        <input type="text" name="title" placeholder="Search by title" />
-        <button onClick={(e) => {
-          e.stopPropagation();
-          setPageNumber(1)
-        }}>Search</button>
+          <div className="radio-form">
+            <input
+              type="radio"
+              id="movie"
+              name="contentType"
+              value="movie"
+              checked={radio === "movie"}
+              onChange={handleChange}
+            />
+            <label htmlFor="movie">Movie</label>
+            <input
+              type="radio"
+              id="series"
+              name="contentType"
+              value="series"
+              checked={radio === "series"}
+              onChange={handleChange}
+            />
+            <label htmlFor="series">Series</label>
+          </div>
+          <input type="text" name="title" placeholder="Search by title" />
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setPageNumber(1);
+            }}
+          >
+            Search
+          </button>
         </div>
 
-
-        <SearchResults movies={searchResult}/>
+        <SearchResults movies={searchResult} />
 
         {!setResultsNumber ? (
           ""
@@ -82,7 +85,7 @@ const SearchMovieForm = ({ setSearchResult, searchResult }) => {
 
 SearchMovieForm.propTypes = {
   setSearchResult: PropTypes.func,
-  searchResult: PropTypes.array
+  searchResult: PropTypes.array,
 };
 
 export default SearchMovieForm;

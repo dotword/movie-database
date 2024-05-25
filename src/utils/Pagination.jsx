@@ -25,7 +25,9 @@ const Pagination = ({
           </button>
         </>
       )}
-      <p>Page: {pageNumber} of {totalPages}</p>
+      <p>
+        Page: {pageNumber} of {totalPages}
+      </p>
 
       {pageNumber === totalPages ? (
         ""

@@ -5,16 +5,17 @@ import MovieInfo from "./pages/MovieInfo/MovieInfo";
 import { useEffect, useState } from "react";
 
 function App() {
-
-  const storedFavorites = JSON.parse(localStorage.getItem('favorites'));
-  const [favorites, setFavorites] = useState( storedFavorites || [] );
+  const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+  const [favorites, setFavorites] = useState(storedFavorites || []);
 
   const addToFavorites = (movieDetails) => {
+    movieDetails.Metascore = true;
+    console.log(movieDetails);
     setFavorites([...favorites, movieDetails]);
-  }  
+  };
 
   useEffect(() => {
-    localStorage.setItem('favorites', JSON.stringify(favorites));
+    localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   return (
@@ -29,12 +30,20 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<SearchMovies />} />
-          <Route path=":id" element={<MovieInfo addToFavorites={addToFavorites} />} />
-          <Route path="/my-movies" element={<MyMovies favorites={favorites} setFavorites={setFavorites} />} />
+          <Route
+            path=":id"
+            element={<MovieInfo addToFavorites={addToFavorites} />}
+          />
+          <Route
+            path="/my-movies"
+            element={
+              <MyMovies favorites={favorites} setFavorites={setFavorites} />
+            }
+          />
         </Routes>
       </main>
       <footer>
-        <p>Carmen Salgueiro 2024@</p>
+        <p>Copyright © 2024 - Carmen Salgueiro</p>
       </footer>
     </>
   );

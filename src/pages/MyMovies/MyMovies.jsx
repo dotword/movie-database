@@ -1,5 +1,6 @@
 import "./MyMovies.css";
 import FavoritesList from "../../components/FavoritesList";
+import PropTypes from "prop-types";
 
 const MyMovies = ({ favorites, setFavorites }) => {
   return (
@@ -11,5 +12,11 @@ const MyMovies = ({ favorites, setFavorites }) => {
     </>
   );
 };
+
+MyMovies.propTypes = {
+  setFavorites: PropTypes.func,
+  favorites: PropTypes.array
+};
+
 
 export default MyMovies;

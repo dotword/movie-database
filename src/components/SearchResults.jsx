@@ -2,8 +2,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import defaultImage from "../assets/cinema.jpg";
 
-const SearchResults = ({ movies}) => {
-
+const SearchResults = ({ movies }) => {
   if (!movies) return <p>No results...</p>;
 
   return (

@@ -1,5 +1,4 @@
-const getMovieInfoService = async ({id}) => {
-  
+const getMovieInfoService = async ({ id }) => {
   const { VITE_API_KEY } = import.meta.env;
 
   const url = `https://www.omdbapi.com/?i=${id}&plot=full&apikey=${VITE_API_KEY}`;

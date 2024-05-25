@@ -47,6 +47,7 @@ const FavoritesList = ({ favorites, setFavorites }) => {
 
 FavoritesList.propTypes = {
   favorites: PropTypes.array,
+  setFavorites: PropTypes.func,
 };
 
 export default FavoritesList;

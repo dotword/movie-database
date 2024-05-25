@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
 import getMovieInfoService from "../../services/getMovieInfoService";
 import Loading from "../../utils/Loading";
@@ -6,8 +7,10 @@ import "./MovieInfo.css";
 import defaultImage from "../../assets/cinema.jpg";
 
 const MovieInfo = ({ addToFavorites }) => {
+  // const storedUrl = JSON.parse(window.sessionStorage.getItem("searchUrl"));
+  // console.log(storedUrl.query);
+
   const [movieDetails, setMovieDetails] = useState("");
-  const [className, setClassName] = useState("favorite");
 
   let navigate = useNavigate();
 
@@ -39,6 +42,7 @@ const MovieInfo = ({ addToFavorites }) => {
     Actors,
     Country,
     Language,
+    Metascore,
   } = movieDetails;
 
   return movieDetails ? (
@@ -57,16 +61,23 @@ const MovieInfo = ({ addToFavorites }) => {
             <p>
               ImDB Score <span>{imdbRating}</span>
             </p>
-            <p className={className}>
-              My Favorite{" "}
-              <span
-                onClick={() => {
-                  setClassName("favorite bar")
-                  addToFavorites(movieDetails);
-                }}
-              >
-                ❤️
-              </span>
+    
+            <p className='favorite'>
+              My Favorite
+              {
+                Metascore === true ? (
+                  <span>❤️</span>
+                ) : (
+                  <span  className="heart-Notliked"
+                  onClick={() => {
+                    addToFavorites(movieDetails);
+                  }}
+                >
+                  🤍
+                </span>
+                )
+              }
+
             </p>
           </div>
         </div>
@@ -112,6 +123,10 @@ const MovieInfo = ({ addToFavorites }) => {
   ) : (
     <Loading />
   );
+};
+
+MovieInfo.propTypes = {
+  addToFavorites: PropTypes.func
 };
 
 export default MovieInfo;
